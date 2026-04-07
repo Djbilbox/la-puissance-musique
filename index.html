@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LA PUISSANCE MUSIQUE</title>
+  <style>
+    :root{
+      --bg:#0f0a08;--surface:#17110e;--surface2:#201814;--text:#f4e9de;--muted:#c5b1a2;
+      --primary:#ff7a2f;--blue:#6aa7ff;--border:#3b2c24;--radius:22px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Arial,sans-serif;
+      background: radial-gradient(circle at top left, rgba(255,122,47,.16), transparent 28%), radial-gradient(circle at 85% 20%, rgba(106,167,255,.12), transparent 22%), var(--bg);
+      color:var(--text); line-height:1.6;
+    }
+    .container{width:min(1120px,calc(100% - 2rem));margin:auto}
+    header{position:sticky;top:0;background:rgba(15,10,8,.82); backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06); z-index:100;}
+    nav{display:flex;justify-content:space-between;align-items:center; padding:18px 0;}
+    .brand{font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .nav-links{display:flex;gap:20px;color:var(--muted)}
+    .nav-links a{text-decoration:none;color:inherit}
+    .btn{display:inline-block;padding:14px 20px;border-radius:999px;text-decoration:none; background:var(--primary);color:#130d0a;font-weight:700;}
+    .hero{min-height:88vh;display:grid;align-items:center;padding:70px 0}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center}
+    .eyebrow{display:inline-block;padding:8px 14px;border-radius:999px; background:rgba(255,122,47,.10);color:var(--muted);font-size:12px; letter-spacing:.14em;text-transform:uppercase;}
+    h1{font-size:clamp(3rem,8vw,7rem);line-height:.95;max-width:10ch;margin-top:18px}
+    h2{font-size:clamp(2rem,4vw,4rem);line-height:1.02}
+    p{color:var(--muted)}
+    .panel{background:var(--surface);border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+    .wave{height:220px;border-radius:18px;overflow:hidden;background: linear-gradient(180deg, rgba(255,122,47,.16), transparent), #140e0b; border:1px solid rgba(255,122,47,.14);}
+    section{padding:90px 0}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--surface);border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:24px}
+    .contact{display:grid;grid-template-columns:1.05fr .95fr;gap:20px}
+    form{display:grid;gap:14px}
+    input,textarea{width:100%;padding:15px 16px;border-radius:16px;border:1px solid rgba(255,255,255,.1); background:var(--surface2);color:var(--text);}
+    @media (max-width: 900px){ .hero-grid,.cards,.contact{grid-template-columns:1fr} .nav-links{display:none} }
+  </style>
+</head>
+<body>
+  <header><div class="container"><nav><div class="brand">LA PUISSANCE MUSIQUE</div><div class="nav-links"><a href="#univers">Univers</a><a href="#sons">Sons</a><a href="#contact">Contact</a></div><a class="btn" href="#contact">Demander un son</a></nav></div></header>
+  <main>
+    <section class="hero"><div class="container hero-grid"><div><span class="eyebrow">Puissance • Impact • Signature</span><h1>Le son qui frappe fort.</h1><p>Studio créatif pour instrumentales, identité sonore et contenus musicaux puissants.</p></div><div class="panel"><div class="wave"><svg viewBox="0 0 600 220" width="100%" height="100%"><path d="M0 146C34 146 34 83 68 83C102 83 102 174 136 174C170 174 170 53 204 53" stroke="#ff7a2f" stroke-width="4" fill="none"/></svg></div></div></div></section>
+    <section id="contact"><div class="container contact"><div><h2>Prêt pour l'impact ?</h2><p>Contacte-nous pour ton prochain projet.</p></div><form><input type="text" placeholder="Nom"><input type="email" placeholder="Email"><textarea placeholder="Ton projet"></textarea><button class="btn" type="button">Envoyer</button></form></div></section>
+  </main>
+</body>
+</html>
