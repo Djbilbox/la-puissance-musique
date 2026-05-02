@@ -1,676 +1,794 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YACINE MADMAX | LA PUISSANCE MUSIQUE</title>
-    <meta name="description" content="Site officiel de Yacine Madmax - La Puissance Musique. Clips, musique, boutique et partenariat DJBILBOX BEATS.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YACINE MADMAX | LA PUISSANCE MUSIQUE</title>
+  <meta name="description" content="Site officiel de Yacine Madmax - La Puissance Musique. Clips, musique, boutique et contact WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#000000;
+      --bg-soft:#080808;
+      --card:#0a0a0a;
+      --line:#222222;
+      --text:#ffffff;
+      --text-soft:#999999;
+      --muted:#555555;
+      --gold:#bd914d;
+      --shadow:none;
+      --container:1300px;
+      --timing:0.4s;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Montserrat",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+    }
+    h1, h2, h3, .brand strong{
+      font-family:"Playfair Display",serif;
+      font-weight:400;
+    }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .container{width:min(90%,var(--container));margin:auto}
+    .section{padding:120px 0}
+    .section.soft{
+      background:var(--bg-soft);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(0,0,0,0.85);
+      backdrop-filter:blur(15px);
+      border-bottom:1px solid rgba(255,255,255,0.05);
+    }
+    .nav{
+      min-height:90px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      line-height:1;
+    }
+    .brand strong{
+      font-size:1.4rem;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .brand span{
+      margin-top:6px;
+      font-size:.65rem;
+      text-transform:uppercase;
+      letter-spacing:.3em;
+      color:var(--gold);
+    }
+    .nav-links{
+      display:flex;
+      align-items:center;
+      list-style:none;
+      gap:32px;
+      flex-wrap:wrap;
+    }
+    .nav-links a{
+      color:var(--text-soft);
+      font-size:.85rem;
+      text-transform:uppercase;
+      letter-spacing:0.15em;
+      transition:var(--timing) ease;
+      position:relative;
+    }
+    .nav-links a:hover{
+      color:var(--gold);
+    }
+    .nav-links a::after{
+      content:'';
+      position:absolute;
+      width:0;
+      height:1px;
+      bottom:-4px;
+      left:0;
+      background:var(--gold);
+      transition:width var(--timing) ease;
+    }
+    .nav-links a:hover::after{
+      width:100%;
+    }
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:50px;
+      padding:0 30px;
+      font-size:0.8rem;
+      text-transform:uppercase;
+      letter-spacing:0.2em;
+      font-weight:500;
+      border:1px solid transparent;
+      transition:all var(--timing) ease;
+      cursor:pointer;
+    }
+    .btn-dark{
+      background:var(--gold);
+      color:#000;
+      border-color:var(--gold);
+    }
+    .btn-dark:hover{
+      background:transparent;
+      color:var(--gold);
+    }
+    .btn-light{
+      background:transparent;
+      color:var(--text);
+      border-color:rgba(255,255,255,0.3);
+    }
+    .btn-light:hover{
+      border-color:var(--gold);
+      color:var(--gold);
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes subtleZoom {
+      from { transform: scale(1.05); }
+      to { transform: scale(1); }
+    }
+
+    .hero{
+      padding:100px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20vh;
+      right: -20vw;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, rgba(189,145,77,0.08) 0%, rgba(0,0,0,0) 70%);
+      z-index: -1;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:center;
+    }
+    .hero-text {
+      animation: fadeUp 1s ease-out;
+    }
+    .eyebrow{
+      display:inline-block;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.3em;
+      color:var(--gold);
+      margin-bottom:20px;
+    }
+    .hero h1{
+      font-size:clamp(3rem, 5vw, 5.5rem);
+      line-height:1;
+      letter-spacing:0.02em;
+      margin-bottom:24px;
+      text-transform:uppercase;
+    }
+    .hero p{
+      color:var(--text-soft);
+      font-size:1rem;
+      font-weight:300;
+      margin-bottom:34px;
+      max-width:90%;
+    }
+    .hero-actions{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:40px;
+    }
     
-    <style>
-        :root {
-            /* Palette luxueuse (Thème Blanc) */
-            --bg-pure: #FFFFFF;
-            --bg-off: #FAFAF8;
-            --text-dark: #1A1A1A;
-            --text-muted: #666666;
-            --gold-accent: #C9A84C;
-            --border-light: #EAEAEA;
-            
-            /* Typography */
-            --font-display: 'Cormorant Garamond', serif;
-            --font-sans: 'Inter', sans-serif;
-            
-            /* Utils */
-            --transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
+    .hero-visual-wrap{
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 10px;
+      background: var(--bg-soft);
+      animation: fadeUp 1.2s ease-out;
+    }
+    .hero-visual{
+      min-height:700px;
+      position:relative;
+      background: url("images/logo3d.png") center/contain no-repeat;
+      background-size: 80%;
+      background-color: var(--bg);
+      animation: subtleZoom 2s ease-out;
+    }
+    
+    /* Stats/Infos replaced with sleek minimal counters */
+    .hero-infos{
+      display:flex;
+      gap:40px;
+      border-top: 1px solid var(--line);
+      padding-top: 30px;
+    }
+    .info-box strong{
+      display:block;
+      font-family: "Playfair Display", serif;
+      font-size:1.8rem;
+      color:var(--gold);
+      margin-bottom:0;
+    }
+    .info-box span{
+      color:var(--muted);
+      font-size:.75rem;
+      text-transform:uppercase;
+      letter-spacing:0.15em;
+    }
 
-        /* RESET */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; font-size: 16px; }
-        body { 
-            font-family: var(--font-sans); 
-            background-color: var(--bg-pure); 
-            color: var(--text-dark); 
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        img, svg { max-width: 100%; display: block; }
-        iframe { width: 100%; border: 0; display: block; }
+    .section-head{
+      margin-bottom:60px;
+      text-align:center;
+    }
+    .section-head.left {
+      text-align:left;
+    }
+    .section-head h2{
+      font-size:clamp(2.5rem,4vw,3.5rem);
+      line-height:1.1;
+      margin-bottom:20px;
+      text-transform:uppercase;
+      letter-spacing: 0.05em;
+    }
+    .section-head p{
+      color:var(--text-soft);
+      font-size:1rem;
+      font-weight:300;
+      max-width:600px;
+      margin: 0 auto;
+    }
+    .section-head.left p{
+      margin: 0;
+    }
 
-        /* TYPOGRAPHY */
-        h1, h2, h3, .font-display {
-            font-family: var(--font-display);
-            font-weight: 500;
-        }
+    .about-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:50px;
+      align-items:center;
+    }
+    .about-image{
+      min-height:700px;
+      background: url("images/image1.jpg") center/cover no-repeat;
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
+    .about-image::after {
+      content:'';
+      position:absolute;
+      inset:0;
+      background: linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%);
+    }
+    .about-content p{
+      color:var(--text-soft);
+      font-weight:300;
+      margin-bottom:24px;
+      font-size: 1rem;
+    }
+    .about-list{
+      list-style:none;
+      display:grid;
+      gap:16px;
+      margin-top:40px;
+      padding-top:40px;
+      border-top: 1px solid var(--line);
+    }
+    .about-list li{
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color:var(--text);
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+    .about-list li::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
 
-        .eyebrow {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--gold-accent);
-            display: block;
-            margin-bottom: 20px;
-        }
+    .services{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:30px;
+    }
+    .service{
+      padding:50px 40px;
+      background:var(--card);
+      border:1px solid var(--line);
+      transition: all var(--timing) ease;
+    }
+    .service:hover {
+      border-color: var(--gold);
+      transform: translateY(-5px);
+    }
+    .service h3{
+      margin-bottom:20px;
+      font-size:1.5rem;
+      color:var(--gold);
+    }
+    .service p{
+      color:var(--text-soft);
+      margin-bottom:24px;
+      font-weight:300;
+      font-size: 0.95rem;
+    }
+    .service ul{
+      list-style:none;
+      display:grid;
+      gap:12px;
+      color:var(--text);
+      font-size: 0.85rem;
+    }
 
-        /* ANIMATION CLASSES (Intersection Observer) */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
+    .music-grid,
+    .video-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:40px;
+    }
+    .embed-card{
+      background:var(--bg);
+      border:1px solid var(--line);
+    }
+    .embed-body{
+      padding:24px 30px;
+    }
+    .embed-body h3{
+      font-size:1.4rem;
+      margin-bottom:10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .embed-body p{
+      color:var(--text-soft);
+      font-weight:300;
+      font-size:.9rem;
+    }
+    iframe{
+      width:100%;
+      border:0;
+      display:block;
+    }
 
-        /* BUTTONS */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px 40px;
-            font-family: var(--font-sans);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border: 1px solid var(--text-dark);
-            background: transparent;
-            color: var(--text-dark);
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--text-dark);
-            transform: scaleY(0);
-            transform-origin: bottom;
-            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-            z-index: -1;
-        }
-        .btn:hover { color: var(--bg-pure); }
-        .btn:hover::before { transform: scaleY(1); }
+    .cards-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:40px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      position: relative;
+    }
+    .card:hover {
+      border-color: rgba(255,255,255,0.2);
+    }
+    .card-media{
+      aspect-ratio:3/4;
+      background: url("images/image2.jpg") center/cover no-repeat;
+    }
+    .card-media.two{
+      background: url("images/image2.jpg") center/cover no-repeat;
+      filter: grayscale(30%) contrast(1.1);
+    }
+    .card-media.three{
+      background: url("images/image2.jpg") center/cover no-repeat;
+      filter: sepia(20%) contrast(1.1);
+    }
+    .card-body{
+      padding:30px;
+      text-align: center;
+    }
+    .card-body h3{
+      font-size:1.4rem;
+      margin-bottom:12px;
+      letter-spacing: 0.05em;
+    }
+    .card-body p{
+      color:var(--text-soft);
+      margin-bottom:24px;
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
+    .price-tag {
+      display: block;
+      color: var(--gold);
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+    .card-body .btn {
+      width: 100%;
+    }
 
-        .btn-gold {
-            border-color: var(--gold-accent);
-            color: var(--gold-accent);
-        }
-        .btn-gold::before { background: var(--gold-accent); }
-        .btn-gold:hover { color: var(--bg-pure); }
+    .contact-box{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:40px;
+      padding:60px 80px;
+      background:var(--bg-soft);
+      border:1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-box::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--gold);
+    }
+    .contact-title h3{
+      font-size:2.5rem;
+      margin-bottom:16px;
+      color:var(--text);
+    }
+    .contact-title p{
+      color:var(--text-soft);
+      max-width:500px;
+      font-weight: 300;
+    }
 
-        /* HEADER */
-        .header {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            padding: 30px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            transition: var(--transition);
-            background: transparent;
-        }
-        .header.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            padding: 20px 5%;
-            border-bottom: 1px solid var(--border-light);
-        }
-        .brand {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-        }
-        .brand strong {
-            font-size: 1.5rem;
-            font-family: var(--font-display);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-        .brand span {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--gold-accent);
-        }
+    footer{
+      border-top:1px solid var(--line);
+      padding:60px 0;
+      background:var(--bg-soft);
+    }
+    .footer-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px;
+      flex-wrap:wrap;
+    }
+    .footer-row p{
+      color:var(--muted);
+      font-size:.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .footer-links{
+      display:flex;
+      gap:30px;
+      flex-wrap:wrap;
+    }
+    .footer-links a{
+      color:var(--text-soft);
+      font-size:.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: color var(--timing) ease;
+    }
+    .footer-links a:hover{
+      color:var(--gold);
+    }
 
-        .nav-desktop { display: flex; gap: 40px; }
-        .nav-link {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px; left: 0;
-            width: 0; height: 1px;
-            background: var(--gold-accent);
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after { width: 100%; }
-        .nav-link:hover { color: var(--gold-accent); }
-
-        /* SECTIONS */
-        .section { padding: 120px 5%; }
-        .section-off { background-color: var(--bg-off); }
-        .section-head {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-        .section-head h2 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            line-height: 1.1;
-        }
-        .section-head p {
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 20px auto 0;
-            font-weight: 300;
-        }
-
-        /* HERO */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 5%;
-            position: relative;
-            background: var(--bg-off);
-        }
-        .hero-content {
-            max-width: 900px;
-        }
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 6.5rem);
-            line-height: 1;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 50px;
-            font-weight: 300;
-        }
-        .hero-actions {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        /* BIO / PRESENTATION */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            max-width: 1200px;
-            margin: 0 auto;
-            align-items: center;
-        }
-        .about-text p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            font-weight: 300;
-            margin-bottom: 20px;
-        }
-        .about-list {
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid var(--border-light);
-        }
-        .about-list li {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
-        .about-list li::before {
-            content: '';
-            width: 6px; height: 6px;
-            background: var(--gold-accent);
-            border-radius: 50%;
-        }
-
-        /* DJBILBOX BEATS RUBRIQUE */
-        .partner-box {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 60px;
-            background: var(--bg-pure);
-            border: 1px solid var(--border-light);
-            text-align: center;
-            position: relative;
-        }
-        .partner-box::before {
-            content: '';
-            position: absolute;
-            top: -1px; left: 50%;
-            transform: translateX(-50%);
-            width: 80px; height: 1px;
-            background: var(--gold-accent);
-        }
-        .partner-logo {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        .partner-services {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 40px;
-            text-align: left;
-            border-top: 1px solid var(--border-light);
-            padding-top: 40px;
-        }
-        .p-service h4 {
-            font-size: 1.1rem;
-            color: var(--gold-accent);
-            margin-bottom: 10px;
-            font-family: var(--font-display);
-        }
-        .p-service p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-weight: 300;
-        }
-
-        /* MEDIA GRIDS (Music & Videos) */
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .media-card {
-            background: var(--bg-pure);
-            border: 1px solid var(--border-light);
-            transition: var(--transition);
-        }
-        .media-card:hover {
-            border-color: var(--gold-accent);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
-        }
-        .media-body {
-            padding: 25px 30px;
-        }
-        .media-body h3 {
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-        .media-body p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-weight: 300;
-        }
-
-        /* BOUTIQUE */
-        .boutique-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .shop-card {
-            background: var(--bg-pure);
-            border: 1px solid var(--border-light);
-            text-align: center;
-            padding: 40px 30px;
-            transition: var(--transition);
-        }
-        .shop-card:hover {
-            border-color: var(--gold-accent);
-        }
-        .shop-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-        }
-        .shop-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            min-height: 45px;
-        }
-        .shop-price {
-            display: block;
-            color: var(--gold-accent);
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-
-        /* CONTACT */
-        .contact-box {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 80px;
-            background: var(--bg-pure);
-            border: 1px solid var(--border-light);
-        }
-        .contact-phone {
-            display: block;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-family: var(--font-display);
-            color: var(--text-dark);
-            margin: 30px 0;
-            transition: color 0.3s;
-        }
-        .contact-phone:hover {
-            color: var(--gold-accent);
-        }
-        .whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 35px;
-            background: #25D366;
-            color: white;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 50px;
-            transition: var(--transition);
-        }
-        .whatsapp-btn:hover {
-            background: #1EBE5C;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
-        }
-
-        /* FOOTER */
-        .footer {
-            padding: 60px 5%;
-            text-align: center;
-            border-top: 1px solid var(--border-light);
-            background: var(--bg-pure);
-        }
-        .footer-text {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-        }
-        .footer-links a {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .footer-links a:hover { color: var(--gold-accent); }
-
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .about-grid, .media-grid, .partner-services { grid-template-columns: 1fr; }
-            .boutique-grid { grid-template-columns: repeat(2, 1fr); }
-            .contact-box { padding: 50px 20px; }
-        }
-        @media (max-width: 768px) {
-            .nav-desktop { display: none; }
-            .section { padding: 100px 5%; }
-            .boutique-grid { grid-template-columns: 1fr; }
-            .hero-actions { flex-direction: column; }
-        }
-    </style>
+    @media (max-width:1100px){
+      .hero-grid,.about-grid,.music-grid,.video-grid{
+        grid-template-columns:1fr;
+      }
+      .services, .cards-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero-visual{min-height:500px}
+    }
+    @media (max-width:840px){
+      .nav{
+        flex-direction: column;
+        padding:20px 0;
+      }
+      .nav-links{
+        justify-content:center;
+        gap: 20px;
+        margin: 10px 0;
+      }
+      .contact-box{
+        flex-direction:column;
+        align-items:flex-start;
+        padding: 40px;
+      }
+      .section{padding:80px 0}
+      .services, .cards-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header class="header" id="header">
-        <a href="#top" class="brand">
-            <strong>YACINE MADMAX</strong>
-            <span>La Puissance Musique</span>
-        </a>
-        <nav class="nav-desktop">
-            <a href="#about" class="nav-link">Bio</a>
-            <a href="#music" class="nav-link">Musique</a>
-            <a href="#videos" class="nav-link">Vidéos</a>
-            <a href="#djbilbox" class="nav-link">DJBILBOX</a>
-            <a href="#boutique" class="nav-link">Boutique</a>
-        </nav>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero" id="top">
-        <div class="hero-content">
-            <span class="eyebrow fade-in">Maison de Disque / Site Officiel</span>
-            <h1 class="hero-title fade-in delay-1">YACINE MADMAX</h1>
-            <p class="hero-subtitle fade-in delay-2">
-                L'identité artistique brute entre Paris et l’Algérie. Direction visuelle forte, présence urbaine affirmée et collection officielle intégrée. Le prestige de la rue.
-            </p>
-            <div class="hero-actions fade-in delay-2">
-                <a class="btn btn-gold" href="#contact">Contacter la direction</a>
-                <a class="btn" href="#music">Découvrir le son</a>
-            </div>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#top" class="brand" style="display:flex; align-items:center; gap: 15px;">
+        <img src="images/logo3d.png" alt="LA PUISSANCE MUSIQUE Logo" style="height: 60px; object-fit: contain; border-radius: 4px;">
+        <div style="display: flex; flex-direction: column;">
+          <strong>YACINE MADMAX</strong>
+          <span>La Puissance Musique</span>
         </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#about">Bio</a></li>
+          <li><a href="#services">Univers</a></li>
+          <li><a href="#music">Musique</a></li>
+          <li><a href="#videos">Vidéo</a></li>
+          <li><a href="#boutique">Boutique</a></li>
+        </ul>
+      </nav>
+
+      <a class="btn btn-dark" href="https://wa.me/33744182894" target="_blank" rel="noopener noreferrer">
+        Contact WhatsApp
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <span class="eyebrow">Maison de Disque / Site Officiel</span>
+          <h1>LA PUISSANCE MUSIQUE</h1>
+          <p>
+            L'identité artistique brute entre Paris et l’Algérie. Direction visuelle forte, présence urbaine affirmée et collection officielle intégrée. Le prestige de la rue.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-dark" href="https://wa.me/33744182894" target="_blank" rel="noopener noreferrer">Contacter la direction</a>
+            <a class="btn btn-light" href="#music">Découvrir le son</a>
+          </div>
+
+          <div class="hero-infos">
+            <div class="info-box">
+              <strong>PARIS</strong>
+              <span>DZ Foundation</span>
+            </div>
+            <div class="info-box">
+              <strong>CLIPS</strong>
+              <span>Signature visuelle</span>
+            </div>
+            <div class="info-box">
+              <strong>VIP</strong>
+              <span>Contact direct</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual-wrap">
+          <div class="hero-visual"></div>
+        </div>
+      </div>
     </section>
 
-    <!-- BIO / PRESENTATION -->
-    <section id="about" class="section">
+    <section id="about" class="section soft">
+      <div class="container">
         <div class="about-grid">
-            <div class="about-text fade-in">
-                <span class="eyebrow">Héritage & Vision</span>
-                <h2 class="font-display" style="font-size: 2.5rem; margin-bottom: 20px;">Une signature artistique sans compromis</h2>
-                <p>
-                    Yacine Madmax est un artiste algérien installé à Paris, à la tête de La Puissance Musique. Son projet fusionne rap, esthétique de rue, haute culture visuelle et image de marque luxueuse dans une même signature.
-                </p>
-                <p>
-                    Entre la France et l’Algérie, l'univers est bâti pour durer. La Puissance Musique incarne cette vision indépendante, avec une ligne directrice claire, urbaine et assumée, traitée avec le prestige des grandes maisons.
-                </p>
-                <ul class="about-list">
-                    <li>Direction artistique haut de gamme.</li>
-                    <li>Connexion directe Paris - Alger.</li>
-                    <li>Boutique et collection exclusive.</li>
-                </ul>
+          <div class="about-image"></div>
+          <div class="about-content">
+            <div class="section-head left">
+              <span class="eyebrow">Héritage & Vision</span>
+              <h2>Une signature artistique sans compromis</h2>
             </div>
-            <div class="about-image fade-in delay-1" style="background: var(--bg-off); min-height: 500px; border: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center;">
-                <!-- Espace pour l'image Madmax -->
-                <span style="color: var(--text-muted); font-style: italic; letter-spacing: 2px;">LA PUISSANCE MUSIQUE</span>
-            </div>
+            <p>
+              Yacine Madmax est un artiste algérien installé à Paris, à la tête de La Puissance Musique. Son projet fusionne rap, esthétique de rue, haute culture visuelle et image de marque luxueuse dans une même signature.
+            </p>
+            <p>
+              Entre la France et l’Algérie, l'univers est bâti pour durer. La Puissance Musique incarne cette vision indépendante, avec une ligne directrice claire, urbaine et assumée, traitée avec le prestige des grandes maisons.
+            </p>
+
+            <ul class="about-list">
+              <li>Direction artistique haut de gamme.</li>
+              <li>Connexion directe Paris - Alger.</li>
+              <li>Boutique et collection exclusive.</li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- MUSIQUE (CLIPS YOUTUBE) -->
-    <section id="music" class="section section-off">
-        <div class="section-head fade-in">
-            <span class="eyebrow">Sélection</span>
-            <h2>L'Atelier Sonore</h2>
-            <p>Espace d'écoute fluide. Les morceaux s'enchaînent avec la clarté d'un studio professionnel.</p>
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Les Piliers</span>
+          <h2>L'ADN La Puissance Musique</h2>
+          <p>Une expérience premium, mettant en avant une identité forte, ancrée dans le réel et tournée vers l'excellence visuelle.</p>
         </div>
 
-        <div class="media-grid">
-            <article class="media-card fade-in">
-                <iframe height="350" src="https://www.youtube.com/embed/nYNmS7mO00E?rel=0&color=white" title="La Puissance Musique" allowfullscreen></iframe>
-                <div class="media-body">
-                    <h3 class="font-display">La Puissance Musique</h3>
-                    <p>Visualisation de l'identité du label.</p>
-                </div>
-            </article>
+        <div class="services">
+          <article class="service">
+            <h3>Image & Élegance</h3>
+            <p>Une direction artistique sombre, stricte et luxueuse, conçue pour magnifier l'artiste et son message.</p>
+            <ul>
+              <li>Esthétique monochrome stricte.</li>
+              <li>Typographie de marque de luxe.</li>
+              <li>Minimalisme assumé.</li>
+            </ul>
+          </article>
 
-            <article class="media-card fade-in delay-1">
-                <iframe height="350" src="https://www.youtube.com/embed/U2M3Mc8znDM?rel=0&color=white" title="L'Écoute Premium" allowfullscreen></iframe>
-                <div class="media-body">
-                    <h3 class="font-display">L'Écoute Premium</h3>
-                    <p>Immersion auditive dans l'univers de La Puissance.</p>
-                </div>
-            </article>
+          <article class="service">
+            <h3>Hub Auditif</h3>
+            <p>Espace d'écoute fluide et haute-fidélité. Les morceaux s'enchaînent avec la clarté d'un studio professionnel.</p>
+            <ul>
+              <li>Intégration YouTube native.</li>
+              <li>Playlists curatées.</li>
+              <li>Expérience mobile sans friction.</li>
+            </ul>
+          </article>
+
+          <article class="service">
+            <h3>Exclusivité</h3>
+            <p>Le projet se vit en direct. La marque connecte ses auditeurs et partenaires via un canal prioritaire et personnel.</p>
+            <ul>
+              <li>Accès WhatsApp direct.</li>
+              <li>Commandes privées.</li>
+              <li>Service personnalisé.</li>
+            </ul>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- VIDEOS (CLIPS YOUTUBE) -->
+    <section id="music" class="section soft">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Sélection</span>
+          <h2>L'Atelier Sonore</h2>
+        </div>
+
+        <div class="music-grid">
+          <article class="embed-card">
+            <iframe height="380" src="https://www.youtube.com/embed/nYNmS7mO00E?rel=0&amp;color=white" title="Track 1" allowfullscreen></iframe>
+            <div class="embed-body">
+              <h3>La Puissance Musique</h3>
+              <p>Visualisation de l'identité du label.</p>
+            </div>
+          </article>
+
+          <article class="embed-card">
+            <iframe height="380" src="https://www.youtube.com/embed/U2M3Mc8znDM?rel=0&amp;color=white" title="Track 2" allowfullscreen></iframe>
+            <div class="embed-body">
+              <h3>L'Écoute Premium</h3>
+              <p>Immersion auditive dans l'univers de La Puissance.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="videos" class="section">
-        <div class="section-head fade-in">
-            <span class="eyebrow">Visuels</span>
-            <h2>Galerie Cinématographique</h2>
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Visuels</span>
+          <h2>Galerie Cinématographique</h2>
         </div>
 
-        <div class="media-grid">
-            <article class="media-card fade-in">
-                <iframe height="350" src="https://www.youtube.com/embed/mv2Yeb9xpmg?rel=0&color=white" title="Yacine Madmax Freestyle" allowfullscreen></iframe>
-                <div class="media-body">
-                    <h3 class="font-display">YACINE MADMAX - Freestyle</h3>
-                    <p>Visualisation de l'identité Madmax, sans filtre.</p>
-                </div>
-            </article>
-
-            <article class="media-card fade-in delay-1">
-                <iframe height="350" src="https://www.youtube.com/embed/h3JatB1iGYQ?rel=0&color=white" title="Yacine Madmax Clip" allowfullscreen></iframe>
-                <div class="media-body">
-                    <h3 class="font-display">YACINE MADMAX - Clip Pro</h3>
-                    <p>Esthétique visuelle assumée et prestige de la rue.</p>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <!-- RUBRIQUE DJBILBOX BEATS -->
-    <section id="djbilbox" class="section section-off">
-        <div class="partner-box fade-in">
-            <span class="eyebrow">Partenaire & Direction Audio-Visuelle</span>
-            <div class="partner-logo">DJBILBOX BEATS</div>
-            <p style="color: var(--text-muted); font-weight: 300; max-width: 700px; margin: 0 auto;">
-                Beatmaker & producteur musical basé à Toulouse. Un créateur digital à l'avant-garde, alliant composition musicale sur mesure, contenu visuel par IA et réalisation de clips.
-            </p>
-
-            <div class="partner-services">
-                <div class="p-service">
-                    <h4>Production Instrumentales</h4>
-                    <p>Hip-Hop, Afrotrap, Deep House. Des beats originaux et sur mesure.</p>
-                </div>
-                <div class="p-service">
-                    <h4>Réalisation de Clips</h4>
-                    <p>Création de clips vidéo professionnels avec une esthétique luxueuse.</p>
-                </div>
-                <div class="p-service">
-                    <h4>Covers & Artworks</h4>
-                    <p>Design haut de gamme pour pochettes de singles et d'albums.</p>
-                </div>
+        <div class="video-grid">
+          <article class="embed-card">
+            <iframe height="380" src="https://www.youtube.com/embed/mv2Yeb9xpmg?rel=0&amp;color=white" title="Yacine Madmax Freestyle" allowfullscreen></iframe>
+            <div class="embed-body">
+              <h3>YACINE MADMAX - Freestyle</h3>
+              <p>Visualisation de l'identité Madmax, sans filtre.</p>
             </div>
+          </article>
+
+          <article class="embed-card">
+            <iframe height="380" src="https://www.youtube.com/embed/h3JatB1iGYQ?rel=0&amp;color=white" title="Yacine Madmax Clip" allowfullscreen></iframe>
+            <div class="embed-body">
+              <h3>YACINE MADMAX - Clip Pro</h3>
+              <p>Esthétique visuelle assumée et prestige de la rue.</p>
+            </div>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- BOUTIQUE -->
-    <section id="boutique" class="section">
-        <div class="section-head fade-in">
-            <span class="eyebrow">Collection</span>
-            <h2>La Garde-Robe</h2>
-            <p>Pièces d'exception tirées de l'univers Madmax. Qualité supérieure, quantités limitées.</p>
+    <section id="boutique" class="section soft">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Collection</span>
+          <h2>La Garde-Robe</h2>
+          <p>Pièces d'exception tirées de l'univers Madmax. Qualité supérieure, quantités limitées.</p>
         </div>
 
-        <div class="boutique-grid">
-            <article class="shop-card fade-in">
-                <h3 class="font-display">T-Shirt Signature</h3>
-                <p>L'essentiel orné du logo La Puissance Musique. Coton lourd premium.</p>
-                <span class="shop-price">35 €</span>
-                <a class="btn" href="https://wa.me/33670150676?text=Bonjour%20je%20veux%20commander%20le%20T-Shirt%20Signature" target="_blank">Réserver (S-XL)</a>
-            </article>
+        <div class="cards-3">
+          <article class="card">
+            <div class="card-media"></div>
+            <div class="card-body">
+              <h3>T-Shirt Signature</h3>
+              <p>L'essentiel orné du logo La Puissance Musique. Coton lourd premium.</p>
+              <span class="price-tag">35 €</span>
+              <a class="btn btn-light" href="https://wa.me/33744182894?text=Bonjour%20je%20veux%20commander%20le%20T-Shirt%20Signature" target="_blank" rel="noopener noreferrer">Réserver (S-XL)</a>
+            </div>
+          </article>
 
-            <article class="shop-card fade-in delay-1">
-                <h3 class="font-display">Hoodie Officiel</h3>
-                <p>Coupe structurée, noir profond avec broderie discrète.</p>
-                <span class="shop-price">65 €</span>
-                <a class="btn" href="https://wa.me/33670150676?text=Bonjour%20je%20veux%20commander%20le%20Hoodie%20Officiel" target="_blank">Réserver (S-XXL)</a>
-            </article>
+          <article class="card">
+            <div class="card-media two"></div>
+            <div class="card-body">
+              <h3>Hoodie Officiel</h3>
+              <p>Coupe structurée, noir profond avec broderie discrète.</p>
+              <span class="price-tag">65 €</span>
+              <a class="btn btn-light" href="https://wa.me/33744182894?text=Bonjour%20je%20veux%20commander%20le%20Hoodie%20Officiel" target="_blank" rel="noopener noreferrer">Réserver (S-XXL)</a>
+            </div>
+          </article>
 
-            <article class="shop-card fade-in delay-2">
-                <h3 class="font-display">Capsule Clip Or</h3>
-                <p>Drop strictement limité. Identité visuelle du dernier clip.</p>
-                <span class="shop-price">Sur demande</span>
-                <a class="btn btn-gold" href="https://wa.me/33670150676?text=Bonjour%20je%20veux%20des%20infos%20sur%20la%20Capsule%20Clip" target="_blank">Demander l'accès</a>
-            </article>
+          <article class="card">
+            <div class="card-media three"></div>
+            <div class="card-body">
+              <h3>Capsule Clip Or</h3>
+              <p>Drop strictement limité. Identité visuelle du dernier clip.</p>
+              <span class="price-tag">Sur demande</span>
+              <a class="btn btn-dark" href="https://wa.me/33744182894?text=Bonjour%20je%20veux%20des%20infos%20sur%20la%20Capsule%20Clip" target="_blank" rel="noopener noreferrer">Demander l'accès</a>
+            </div>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section section-off">
-        <div class="contact-box fade-in">
-            <span class="eyebrow">Ligne Directe VIP</span>
-            <h2 class="font-display" style="font-size: 2.5rem; margin-bottom: 20px;">Prendre Contact</h2>
-            <p style="color: var(--text-muted); font-weight: 300;">
-                Booking, collaborations musicales, réalisation de clips ou relations presse. La direction est joignable via ce canal sécurisé.
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="contact-box">
+          <div class="contact-title">
+            <h3>Ligne Directe VIP</h3>
+            <p>
+              Booking, collaborations, ou presse. La direction est joignable via ce canal sécurisé et prioritaire.
             </p>
-            
-            <a href="tel:0670150676" class="contact-phone">06 70 15 06 76</a>
-            
-            <a href="https://wa.me/33670150676" target="_blank" class="whatsapp-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12.01 2.014C6.505 2.014 2.025 6.494 2.025 12c0 1.76.46 3.48 1.33 4.99L2 22l5.14-1.35c1.48.83 3.16 1.27 4.87 1.27 5.505 0 9.985-4.48 9.985-9.985 0-5.505-4.48-9.92-9.985-9.92zM12.01 20.08c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.12 8.12 0 0 1-1.25-4.38c0-4.48 3.65-8.13 8.13-8.13s8.13 3.65 8.13 8.13-3.65 8.14-8.13 8.14zm4.46-6.07c-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.17.24-.63.79-.77.95-.14.16-.28.18-.53.06-.24-.12-1.02-.38-1.95-1.21-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.81-.2-.48-.4-.41-.55-.42-.14-.01-.3-.01-.46-.01-.16 0-.42.06-.64.3s-.84.82-.84 2.01.86 2.34.98 2.5 1.7 2.6 4.12 3.64c.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-.106.14-.117-.06-.01-.22-.03-.46-.15z"/>
-                </svg>
-                Discuter sur WhatsApp
-            </a>
+          </div>
+
+          <a class="btn btn-dark" style="min-width: 200px; height: 60px; font-size: 0.95rem;" href="https://wa.me/33744182894" target="_blank" rel="noopener noreferrer">
+            +33 7 44 18 28 94
+          </a>
         </div>
+      </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <p class="footer-text">&copy; <span id="year"></span> YACINE MADMAX — LA PUISSANCE MUSIQUE. Tous droits réservés.</p>
-        <div class="footer-links">
-            <a href="https://www.youtube.com/@yacinemadmax7418" target="_blank">YouTube Madmax</a>
-            <a href="https://www.youtube.com/@YACINEMADMAXLAPUISSANCEMUSIQUE" target="_blank">Label</a>
-        </div>
-    </footer>
+  </main>
 
-    <script>
-        // Set Year
-        document.getElementById('year').textContent = new Date().getFullYear();
+  <footer>
+    <div class="container footer-row">
+      <p>© 2026 YACINE MADMAX — LA PUISSANCE MUSIQUE. Tous droits réservés.</p>
+      <div class="footer-links">
+        <a href="https://www.youtube.com/@yacinemadmax7418" target="_blank" rel="noopener noreferrer">YouTube Madmax</a>
+        <a href="https://www.youtube.com/@YACINEMADMAXLAPUISSANCEMUSIQUE" target="_blank" rel="noopener noreferrer">Label</a>
+        <a href="https://www.youtube.com/@maxdufour8330" target="_blank" rel="noopener noreferrer">Max Dufour</a>
+        <a href="https://wa.me/33744182894" target="_blank" rel="noopener noreferrer">Contact</a>
+      </div>
+    </div>
+  </footer>
 
-        // Header Scroll
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Intersection Observer
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
 </body>
 </html>
